@@ -1,0 +1,38 @@
+.board-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.board-square {
+  display: grid;
+  justify-content: center;
+  background-color: #c1c1d7;
+  border-radius: 10px;
+  padding: 10px;
+}
+.square-contents {
+  display: grid;
+  align-items: center;
+}
+.section-title {
+  font-family: didot;
+  font-size: 20pt;
+  font-weight: bold;
+  text-align: center;
+  margin: 40px;
+}
+.board {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+  grid-gap: 5px;
+}
+#click-text {
+  text-align: center;
+  font-family: didot;
+  font-size: 16pt;
+  margin: 100px, 100px, 100px, 100px;
+}
+body {
+  background-color: whitesmoke;
+}
