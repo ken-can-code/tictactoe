@@ -12,7 +12,10 @@
 }
 .square-contents {
   display: grid;
+  font-family: "Courier New", Courier, monospaceMS;
+  padding-top: 5px;
   align-items: center;
+  font-size: 40pt;
 }
 .section-title {
   font-family: didot;
@@ -27,11 +30,18 @@
   grid-template-rows: 100px 100px 100px;
   grid-gap: 5px;
 }
-#click-text {
+.under-text {
   text-align: center;
   font-family: didot;
   font-size: 16pt;
   margin: 100px, 100px, 100px, 100px;
+}
+#current-turn {
+  text-align: center;
+  font-family: didot;
+  font-size: 16pt;
+  margin: 100px, 100px, 100px, 100px;
+  font-size: 20pt;
 }
 body {
   background-color: whitesmoke;
