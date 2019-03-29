@@ -36,6 +36,11 @@
   font-size: 16pt;
   margin: 100px, 100px, 100px, 100px;
 }
+.instruction-area {
+  display: flex;
+  
+  flex-direction: row;
+}
 #current-turn {
   text-align: center;
   font-family: didot;
