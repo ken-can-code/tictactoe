@@ -38,8 +38,9 @@
 }
 .instruction-area {
   display: flex;
-  
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: auto;
 }
 #current-turn {
   text-align: center;
@@ -47,6 +48,20 @@
   font-size: 16pt;
   margin: 100px, 100px, 100px, 100px;
   font-size: 20pt;
+}
+#next-message {
+  flex: 2;
+}
+#clear {
+  flex: 1;
+  font-family: didot;
+  border-radius: 5px;
+}
+#win {
+  font-size: 20pt;
+  font-weight: bold;
+  text-align: center;
+  color: blue;
 }
 body {
   background-color: whitesmoke;
