@@ -1,7 +1,22 @@
+.board-area {
+  display: flex
+}
+.board-left {
+  flex: 1;
+}
 .board-main {
   display: flex;
+  flex: 1;
   justify-content: center;
   margin-bottom: 40px;
+}
+.board-right {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  font-size: 20pt;
+  font-weight: bold;
+  color: blue;
 }
 .board-square {
   display: grid;
@@ -71,10 +86,11 @@
   width: 135px;
 }
 #win {
-  font-size: 20pt;
+  font-size: 24pt;
   font-weight: bold;
   text-align: center;
   color: blue;
+  padding-left: 20px;
 }
 body {
   background-color: whitesmoke;
