@@ -9,47 +9,55 @@
 
 <body>
   <p class='section-title'>Tic Tac Toe</p>
-  <div class='board-wrapper'>
-    <div class='board'>
-      <div class='board-square' id='square1'>
-        <div class='square-contents'></div>
+  <div class='board-area'>
+    <div class='board-left'></div>
+    <div class='board-main'>
+      <div class='board'>
+        <div class='board-square' id='square1'>
+          <div class='square-contents'></div>
+        </div>
+        <div class='board-square' id='square2'>
+          <div class='square-contents'></div>
+        </div>
+        <div class='board-square' id='square3'>
+          <div class='square-contents'></div>
+        </div>
+        <div class='board-square' id='square4'>
+          <div class='square-contents'></div>
+        </div>
+        <div class='board-square' id='square5'>
+          <div class='square-contents'> </div>
+        </div>
+        <div class='board-square' id='square6'>
+          <div class='square-contents'></div>
+        </div>
+        <div class='board-square' id='square7'>
+          <div class='square-contents'></div>
+        </div>
+        <div class='board-square' id='square8'>
+          <div class='square-contents'></div>
+        </div>
+        <div class='board-square' id='square9'>
+          <div class='square-contents'></div>
+        </div>
       </div>
-      <div class='board-square' id='square2'>
-        <div class='square-contents'></div>
-      </div>
-      <div class='board-square' id='square3'>
-        <div class='square-contents'></div>
-      </div>
-      <div class='board-square' id='square4'>
-        <div class='square-contents'></div>
-      </div>
-      <div class='board-square' id='square5'>
-        <div class='square-contents'> </div>
-      </div>
-      <div class='board-square' id='square6'>
-        <div class='square-contents'></div>
-      </div>
-      <div class='board-square' id='square7'>
-        <div class='square-contents'></div>
-      </div>
-      <div class='board-square' id='square8'>
-        <div class='square-contents'></div>
-      </div>
-      <div class='board-square' id='square9'>
-        <div class='square-contents'></div>
-      </div>
+    </div>
+    <div class='board-right'>
+      <p id='win'></p>
     </div>
   </div>
   <div class='instruction-area'>
-    <p class='under-text' id='next-message'>
+    <div id='left-child'></div>
+    <p id='next-message'>
       Next move: <strong id='current-turn'></strong>
     </p>
-    <button id='clear'>Clear</button>
+    <div class='btn'>
+      <button id='clear'>Clear</button>
+    </div>
   </div>
   <p class='under-text'>
     Click or tap on the above board to play a move!
   </p>
-  <p id='win'></p>
   <script src='index.js'></script>
 </body>
 

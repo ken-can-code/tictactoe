@@ -22,15 +22,11 @@ let winConditions = [
 ];
 
 const clearButton = document.getElementById('clear');
-
-let wins = winConditions;
-
+const winMessage = document.getElementById('win');
 const currentTurn = document.getElementById('current-turn');
-
 const currentMove = () => clickCounter % 2 === 0 ? 'O' : 'X';
-
 const changeMoveDisplay = () => currentTurn.innerHTML = currentMove();
-
+let wins = winConditions;
 let clickCounter = 0;
 
 const changeSquare = event => {
@@ -44,23 +40,20 @@ const changeSquare = event => {
     if (clickCounter >= 5) winChecker();
   }
 };
-let loopCounter = 0;
 const winChecker = () => {
   for (let condition of wins) {
-    loopCounter += 1;
     let space1 = gameState[condition[0]];
     let space2 = gameState[condition[1]];
     let space3 = gameState[condition[2]];
     if (space1 === space2 && space2 === space3 && space1 !== null) {
-      console.log('win condition being checked');
-      const win = document.getElementById('win');
-      win.innerHTML = space1 + ' wins!'
+      winMessage.innerHTML = space1 + ' wins!'
       for (let key in gameState) {
         if (!gameState[key]) gameState[key] = 'filler';
       }
       console.log(gameState);
       break;
     }
+    if (clickCounter === 9) winMessage.innerHTML = "It's a draw!"
   }
 }
 
