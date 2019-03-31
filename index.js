@@ -1,14 +1,8 @@
-let gameState = {
-  square1: null,
-  square2: null,
-  square3: null,
-  square4: null,
-  square5: null,
-  square6: null,
-  square7: null,
-  square8: null,
-  square9: null
-};
+const gameState = {};
+
+for (let i = 1; i <= 9; i += 1) {
+  gameState['square' + i] = null;
+}
 
 let winConditions = [
   ['square1', 'square2', 'square3'],
@@ -21,6 +15,7 @@ let winConditions = [
   ['square3', 'square5', 'square7']
 ];
 
+const clickOrTap = document.getElementById('click-or-tap');
 const clearButton = document.getElementById('clear');
 const winMessage = document.getElementById('win');
 const currentTurn = document.getElementById('current-turn');
@@ -32,8 +27,9 @@ let clickCounter = 0;
 const changeSquare = event => {
   if (!gameState[event.target.id]) {
     const clickId = event.target.id;
-    const clickedSquare = document.getElementById(clickId);
-    clickedSquare.firstElementChild.innerHTML = currentMove();
+    const clickedSquare = document.getElementById(clickId).firstElementChild;
+    if (currentMove() === 'O') clickedSquare.innerHTML = currentMove();
+    else clickedSquare.innerHTML = '<span style=\'color:blue\'>' + currentMove() + '</span>';
     gameState[clickId] = currentMove();
     clickCounter += 1;
     changeMoveDisplay();
@@ -41,20 +37,26 @@ const changeSquare = event => {
   }
 };
 const winChecker = () => {
+  let gameOver = false;
   for (let condition of wins) {
     let space1 = gameState[condition[0]];
     let space2 = gameState[condition[1]];
     let space3 = gameState[condition[2]];
     if (space1 === space2 && space2 === space3 && space1 !== null) {
-      winMessage.innerHTML = space1 + ' wins!'
+      if (space1 === 'X') winMessage.innerHTML = '<span style=\'color:blue\'>' + space1 + ' wins!</span>';
+      else winMessage.innerHTML = space1 + ' wins!'
       for (let key in gameState) {
         if (!gameState[key]) gameState[key] = 'filler';
       }
-      console.log(gameState);
+      gameOver = true;
       break;
     }
-    if (clickCounter === 9) winMessage.innerHTML = "It's a draw!"
+    else if (clickCounter === 9) {
+      winMessage.innerHTML = 'It\'s a draw!';
+      gameOver = true;
+    }
   }
+  if (gameOver) clickOrTap.innerHTML = 'Click clear to play again!';
 }
 
 const clearAction = () => {
@@ -68,16 +70,16 @@ const clearAction = () => {
     let square = document.getElementById(key);
     square.firstElementChild.innerHTML = '';
   }
+  clickOrTap.innerHTML = 'Click or tap on the above board to play a move!';
 }
 
 currentTurn.innerHTML = currentMove();
-square1.addEventListener('click', changeSquare);
-square2.addEventListener('click', changeSquare);
-square3.addEventListener('click', changeSquare);
-square4.addEventListener('click', changeSquare);
-square5.addEventListener('click', changeSquare);
-square6.addEventListener('click', changeSquare);
-square7.addEventListener('click', changeSquare);
-square8.addEventListener('click', changeSquare);
-square9.addEventListener('click', changeSquare);
+const squares = [
+  square1, square2, square3, square4, square5, square6, square7, square8, square9
+];
+
+for (let i = 0; i < 9; i += 1) {
+  squares[i].addEventListener('click', changeSquare);
+}
+
 clearButton.addEventListener('click', clearAction);
