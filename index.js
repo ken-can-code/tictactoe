@@ -1,85 +1,50 @@
-const gameState = {};
+let whosTurn = "X";
 
-for (let i = 1; i <= 9; i += 1) {
-  gameState['square' + i] = null;
+const square1 = document.getElementById("square1");
+const square2 = document.getElementById("square2");
+const square3 = document.getElementById("square3");
+const square4 = document.getElementById("square4");
+const square5 = document.getElementById("square5");
+const square6 = document.getElementById("square6");
+const square7 = document.getElementById("square7");
+const square8 = document.getElementById("square8");
+const square9 = document.getElementById("square9");
+const currentTurn = document.getElementById("current-turn");
+
+currentTurn.innerHTML = "X's turn";
+
+function fillSquare(event) {
+  event.target.children[0].innerHTML = whosTurn;
+  switchTurn();
+  square1.removeEventListener("click", fillSquare);
 }
 
-let winConditions = [
-  ['square1', 'square2', 'square3'],
-  ['square4', 'square5', 'square6'],
-  ['square7', 'square8', 'square9'],
-  ['square1', 'square4', 'square7'],
-  ['square2', 'square5', 'square8'],
-  ['square3', 'square6', 'square9'],
-  ['square1', 'square5', 'square9'],
-  ['square3', 'square5', 'square7']
-];
-
-const clickOrTap = document.getElementById('click-or-tap');
-const clearButton = document.getElementById('clear');
-const winMessage = document.getElementById('win');
-const currentTurn = document.getElementById('current-turn');
-const currentMove = () => clickCounter % 2 === 0 ? 'O' : 'X';
-const changeMoveDisplay = () => currentTurn.innerHTML = currentMove();
-let wins = winConditions;
-let clickCounter = 0;
-
-const changeSquare = event => {
-  if (!gameState[event.target.id]) {
-    const clickId = event.target.id;
-    const clickedSquare = document.getElementById(clickId).firstElementChild;
-    if (currentMove() === 'O') clickedSquare.innerHTML = currentMove();
-    else clickedSquare.innerHTML = '<span style=\'color:blue\'>' + currentMove() + '</span>';
-    gameState[clickId] = currentMove();
-    clickCounter += 1;
-    changeMoveDisplay();
-    if (clickCounter >= 5) winChecker();
+function switchTurn() {
+  if (whosTurn === "X") {
+    whosTurn = "O";
+    currentTurn.innerHTML = `${whosTurn}'s turn`;
+  } else {
+    whosTurn = "X";
+    currentTurn.innerHTML = `${whosTurn}'s turn`;
   }
-};
-const winChecker = () => {
-  let gameOver = false;
-  for (let condition of wins) {
-    let space1 = gameState[condition[0]];
-    let space2 = gameState[condition[1]];
-    let space3 = gameState[condition[2]];
-    if (space1 === space2 && space2 === space3 && space1 !== null) {
-      if (space1 === 'X') winMessage.innerHTML = '<span style=\'color:blue\'>' + space1 + ' wins!</span>';
-      else winMessage.innerHTML = space1 + ' wins!'
-      for (let key in gameState) {
-        if (!gameState[key]) gameState[key] = 'filler';
-      }
-      gameOver = true;
-      break;
-    }
-    else if (clickCounter === 9) {
-      winMessage.innerHTML = 'It\'s a draw!';
-      gameOver = true;
-    }
-  }
-  if (gameOver) clickOrTap.innerHTML = 'Click clear to play again!';
 }
 
-const clearAction = () => {
-  // wins = winConditions; //may need to activate if begin to truncate possibilities
-  const winMessage = document.getElementById('win');
-  winMessage.innerHTML = '';
-  currentTurn.innerHTML = 'O';
-  clickCounter = 0;
-  for (let key in gameState) {
-    gameState[key] = null;
-    let square = document.getElementById(key);
-    square.firstElementChild.innerHTML = '';
-  }
-  clickOrTap.innerHTML = 'Click or tap on the above board to play a move!';
-}
+square1.addEventListener("click", fillSquare);
 
-currentTurn.innerHTML = currentMove();
-const squares = [
-  square1, square2, square3, square4, square5, square6, square7, square8, square9
-];
+/*
 
-for (let i = 0; i < 9; i += 1) {
-  squares[i].addEventListener('click', changeSquare);
-}
+event listeners for click on each box
+******
+THIS IS A STATE
+when clicked it should make O or X appear
+O and X should alternate
+display whose turn it is
+*******
+display when someone wins (win logic)
+clear button event listener
+should clear the board
 
-clearButton.addEventListener('click', clearAction);
+bonus functionality:
+Choose who goes first (X or O)
+
+*/
