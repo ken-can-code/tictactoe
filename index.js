@@ -14,9 +14,10 @@ const currentTurn = document.getElementById("current-turn");
 currentTurn.innerHTML = "X's turn";
 
 function fillSquare(event) {
+  console.log('this is the event.target', event.target);
   event.target.children[0].innerHTML = whosTurn;
   switchTurn();
-  square1.removeEventListener("click", fillSquare);
+  event.target.removeEventListener("click", fillSquare);
 }
 
 function switchTurn() {
@@ -29,7 +30,30 @@ function switchTurn() {
   }
 }
 
-square1.addEventListener("click", fillSquare);
+document.getElementById("clear").addEventListener('click', clearGame);
+
+function clearGame () {
+  
+  currentTurn.innerHTML = "X's turn";
+	const wipeIt = document.querySelectorAll(".square-contents");
+  
+  for (let i = 0; i < 9; i++) {
+    wipeIt[i].innerHTML = "";
+    
+  for (let i = 1; i < 10; i++) {
+  
+  document.getElementById(`square${i}`).addEventListener("click", fillSquare);
+  whosTurn = 'X';
+		}
+  }
+}
+
+
+for (let i = 1; i < 10; i++) {
+  document.getElementById(`square${i}`).addEventListener("click", fillSquare);
+}
+
+
 
 /*
 
