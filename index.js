@@ -1,4 +1,5 @@
 let whosTurn = "X";
+let someoneWon = false;
 
 const square1 = document.getElementById("square1");
 const square2 = document.getElementById("square2");
@@ -10,14 +11,40 @@ const square7 = document.getElementById("square7");
 const square8 = document.getElementById("square8");
 const square9 = document.getElementById("square9");
 const currentTurn = document.getElementById("current-turn");
+const winMessage = document.getElementById('win');
+
+const winConditions = [
+  [square1, square2, square3],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  []];
 
 currentTurn.innerHTML = "X's turn";
 
 function fillSquare(event) {
   console.log('this is the event.target', event.target);
   event.target.children[0].innerHTML = whosTurn;
+  for (let i = 0; i < winConditions.length; i += 1) {
+    for (let k = 1; k < winConditions[i].length; k += 1) {
+      const currentSquare = winConditions[i][k].children[0].innerHTML; // string
+      const prevSquare = winConditions[i][k - 1].children[0].innerHTML; // string
+      if (currentSquare !== prevSquare) {
+        break;
+      } else if (k === winConditions[i].length - 1) {
+        someoneWon = true;
+      }
+    }
+  }
+  if (someoneWon) {
+    winMessage.innerHTML = 'Someone won!';
+  }
   switchTurn();
   event.target.removeEventListener("click", fillSquare);
+  // logic to check if there is a win condition met
 }
 
 function switchTurn() {
